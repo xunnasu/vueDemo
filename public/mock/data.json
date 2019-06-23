@@ -1,0 +1,36 @@
+{
+  "differenceInfo": [
+    { 
+      "imgUrl":"../../public/imgs/11.png",
+      "id": "19",
+      "price": "200.00",
+      "stock": "19",
+      "color":"蓝色",
+      "difference": "无配链"
+    },
+    {
+      "imgUrl":"../../public/imgs/22.png",
+      "id": "20",
+      "price": "210.00",
+      "stock": "29",
+      "color":"白色",
+      "difference": "编制配链"
+    },
+    {
+      "imgUrl":"../../public/imgs/33.png",
+        "id": "21",
+        "price": "300.00",
+        "stock": "39",
+        "color":"绿色",
+        "difference": "精致配链"
+    },
+    {
+      "imgUrl":"../../public/imgs/44.png",
+        "id": "22",
+        "price": "310.00",
+        "stock": "0",
+        "color":"黄色",
+        "difference": "普通配链"
+    }
+  ]
+}

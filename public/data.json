@@ -1,0 +1,52 @@
+ { 
+  "differenceInfo": [
+    {
+      "id": "19",
+      "price": "200.00",
+      "stock": "19",
+      "difference": "无配链,蓝色"
+    },
+    {
+        "id": "20",
+        "price": "300.00",
+        "stock": "29",
+        "difference": "编制配链,蓝色"
+    },
+    {
+        "id": "21",
+        "price": "300.00",
+        "stock": "10",
+        "difference": "无配链,黄色"
+    },
+    {
+        "id": "22",
+        "price": "300.00",
+        "stock": "0",
+        "difference": "编制配链,黄色"
+    }
+  ],
+  "specifications": [
+    { 
+      "name": "配链",
+      "item": [
+        {
+          "name": "无配链"
+        },
+        {
+          "name": "编制配链"
+        }
+      ]
+    },
+    {
+      "name": "主石颜色",
+      "item": [
+        {
+          "name": "蓝色"
+        },
+        {
+          "name": "黄色"
+        }
+      ]
+    }
+  ]
+}
