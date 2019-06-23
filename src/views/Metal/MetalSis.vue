@@ -76,7 +76,7 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      console.log(scrollTop);
+      // console.log(scrollTop);
       this.isFixed = scrollTop > this.offsetTop ? true : false;
     }
   },

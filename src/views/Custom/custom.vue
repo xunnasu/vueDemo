@@ -19,10 +19,10 @@
     </div>
 </template>
 <script>
-// import goods from '../../components/Quotation/goods';
+import goods from '../../components/Quotation/goods';
 export default {
   components: {
-    // goods
+    goods
   },
   data() {
     return {
@@ -33,6 +33,9 @@ export default {
   methods: {
     handleAdd() {
       this.VShow = true;
+    },
+    handleShow() {
+      this.VShow = false;
     }
   }
 };
