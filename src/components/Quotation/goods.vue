@@ -2,31 +2,30 @@
   <div class="containerBox"  v-if="show">
     <div class="container">
       <!-- 选中后的商品规格及属性 -->
-      <div class="top">
+      <div class="top" >
         <div class="img">
           <img src="../../assets/img/222.png" alt="">
         </div>
         <div class="right">
-          <p>￥{{price}}</p>
-          <p>{{stock}}件</p>
-          <p>{{size}}</p>
+          <p>￥{{nowPrice}}</p>
+          <p>库存{{stock}}件</p>
+          <p v-if="isSelect">{{size}}</p>
+          <p v-else>已选{{select}}</p>
         </div>
       </div>
       <!-- 商品筛选 -->
-      <div class="goodsScreen" v-for="(item,index) in goodList" :key="index">
+      <div class="goodsScreen" v-for="(item,index) in keys" :key="index">
         <div class="name">
           <p>{{item.name}}</p>
         </div>
         <input 
           type="button"
-          class="sku"
           @click="tabInfoChange(index,cindex,citem.id,$event)"
           v-for="(citem,cindex) in item.value"
           :class="{notClick:citem.notClick,active:citem.isActiveC}"
           :attr_id="citem.id"
           :value="citem.cname"
-          :key="citem.id"
-        >
+          :key="citem.id">
       </div>
       <div class="sure" @click="handleOk">确定</div>
     </div>
@@ -48,8 +47,11 @@ export default {
     return {
       price: '200',
       stock: '100',
-      size: '请选择尺码',
-      goodList: [
+      size: '请选择颜色和尺码',
+      isSelect: true,
+      selectResult: [], //定义数组存储被选中的值,
+      // selectArr: [], //存放被选中的值
+      keys: [
         {
           name: '颜色',
           isActive: true,
@@ -57,12 +59,14 @@ export default {
             {
               id: '1',
               cname: '黄色',
+              stock: '100',
               isActiveC: false,
               notClick: false
             },
             {
               id: '2',
               cname: '红色',
+              stock: '200',
               isActiveC: false,
               notClick: false
             }
@@ -75,18 +79,32 @@ export default {
             {
               id: '3',
               cname: 'S',
+              stock: '100',
               isActiveC: false,
               notClick: false
             },
             {
               id: '4',
               cname: 'M',
+              stock: '200',
               isActiveC: false,
               notClick: false
             }
           ]
         }
-      ]
+      ],
+      data: {
+        '24;12;31': {
+          price: 366.0,
+          count: 46
+        },
+        '25;12;32': {
+          price: 406,
+          count: 66
+        }
+      },
+      skuResult: {},
+      nowPrice: '180'
     };
   },
   methods: {
@@ -95,20 +113,42 @@ export default {
     },
     tabInfoChange(index, cindex, cid, e) {
       /*所有规格*/
-      let orderInfo = this.goodList;
+      let orderInfo = this.keys;
       /*当前点击的规格的所有子属性内容*/
-      let orderInfoChild = this.goodList[index].value;
+      let orderInfoChild = this.keys[index].value;
       //选中自己，兄弟节点取消选中
       if (orderInfoChild[cindex].notClick !== true) {
         if (orderInfoChild[cindex].isActiveC == true) {
           orderInfoChild[cindex].isActiveC = false;
         } else {
+          //  for (let i = 0; i < orderInfoChild.length; i++) {
+          //   orderInfoChild[i].isActiveC = false;
+          // }
           orderInfoChild.forEach(item => {
             item.isActiveC = false;
           });
           orderInfoChild[cindex].isActiveC = true;
         }
       }
+      //已经选择的节点
+      let selectResult = [];
+      for (let i = 0; i < this.keys.length; i++) {
+        for (let j = 0; j < this.keys[i].value.length; j++) {
+          if (this.keys[i].value[j].isActiveC == true) {
+            selectResult.push(this.keys[i].value[j].id);
+          }
+          // console.log(this.keys[i].value[j]);
+        }
+      }
+    },
+    //获取对象的key
+    getObjectKey(obj) {
+      console.log(obj);
+      var keys = [];
+      for (var keys in obj)
+        if (Object.prototype.hasOwnProperty.call(obj, key))
+          keys[goodsList.length] = keys;
+      return keys;
     }
   }
 };
