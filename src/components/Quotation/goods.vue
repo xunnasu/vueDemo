@@ -27,12 +27,9 @@
           :value="citem.cname"
           :key="citem.id"
         >
-
       </div>
       <div class="sure" @click="handleOk">确定</div>
     </div>
-   
-    
   </div>
 </template>
 <script>
@@ -106,9 +103,9 @@ export default {
         if (orderInfoChild[cindex].isActiveC == true) {
           orderInfoChild[cindex].isActiveC = false;
         } else {
-          for (let i = 0; i < orderInfoChild.length; i++) {
-            orderInfoChild[i].isActiveC = false;
-          }
+          orderInfoChild.forEach(item => {
+            item.isActiveC = false;
+          });
           orderInfoChild[cindex].isActiveC = true;
         }
       }
