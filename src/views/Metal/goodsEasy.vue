@@ -241,7 +241,7 @@ export default {
       let orderInfoChild = this.keys[index]
         .value; /*当前点击的规格的所有子属性内容*/
       //选中自己，兄弟节点取消选中
-      if (orderInfoChild[cindex].notClick != true) {
+      if (orderInfoChild[cindex].notClick !== true) {
         if (orderInfoChild[cindex].isActiveC == true) {
           orderInfoChild[cindex].isActiveC = false;
         } else {
