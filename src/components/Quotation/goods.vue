@@ -4,13 +4,14 @@
       <!-- 选中后的商品规格及属性 -->
       <div class="top" >
         <div class="img">
-          <img src="../../assets/img/222.png" alt="">
+          <!-- <img src="../../assets/img/222.png" alt=""> -->
+          <img :src="`${baseUrl}${image}`">
         </div>
         <div class="right">
           <p>￥{{nowPrice}}</p>
           <p>库存{{stock}}件</p>
           <p v-if="isSelect">{{size}}</p>
-          <p v-else>已选{{select}}</p>
+          
         </div>
       </div>
       <!-- 商品筛选 -->
@@ -20,9 +21,9 @@
         </div>
         <input 
           type="button"
-          @click="tabInfoChange(index,cindex,citem.id,$event)"
           v-for="(citem,cindex) in item.value"
-          :class="{notClick:citem.notClick,active:citem.isActiveC}"
+          @click="tabInfoChange(index,cindex,citem.id,$event)"
+          :class="[citem.notClick?'active':'notClick']"
           :attr_id="citem.id"
           :value="citem.cname"
           :key="citem.id">
@@ -45,9 +46,11 @@ export default {
   },
   data() {
     return {
+      baseUrl: process.env.BASE_URL,
       price: '200',
       stock: '100',
       size: '请选择颜色和尺码',
+      image: 'imgs/111.png',
       isSelect: true,
       selectResult: [], //定义数组存储被选中的值,
       // selectArr: [], //存放被选中的值
@@ -60,14 +63,14 @@ export default {
               id: '1',
               cname: '黄色',
               stock: '100',
-              isActiveC: false,
+              image: 'imgs/111.png',
               notClick: false
             },
             {
               id: '2',
               cname: '红色',
               stock: '200',
-              isActiveC: false,
+              image: 'imgs/222.png',
               notClick: false
             }
           ]
@@ -80,14 +83,12 @@ export default {
               id: '3',
               cname: 'S',
               stock: '100',
-              isActiveC: false,
               notClick: false
             },
             {
               id: '4',
               cname: 'M',
               stock: '200',
-              isActiveC: false,
               notClick: false
             }
           ]
@@ -112,44 +113,48 @@ export default {
       this.$emit('on-show', false);
     },
     tabInfoChange(index, cindex, cid, e) {
-      /*所有规格*/
-      let orderInfo = this.keys;
-      /*当前点击的规格的所有子属性内容*/
-      let orderInfoChild = this.keys[index].value;
-      //选中自己，兄弟节点取消选中
-      if (orderInfoChild[cindex].notClick !== true) {
-        if (orderInfoChild[cindex].isActiveC == true) {
-          orderInfoChild[cindex].isActiveC = false;
-        } else {
-          //  for (let i = 0; i < orderInfoChild.length; i++) {
-          //   orderInfoChild[i].isActiveC = false;
-          // }
-          orderInfoChild.forEach(item => {
-            item.isActiveC = false;
-          });
-          orderInfoChild[cindex].isActiveC = true;
-        }
-      }
-      //已经选择的节点
-      let selectResult = [];
-      for (let i = 0; i < this.keys.length; i++) {
-        for (let j = 0; j < this.keys[i].value.length; j++) {
-          if (this.keys[i].value[j].isActiveC == true) {
-            selectResult.push(this.keys[i].value[j].id);
+      console.log('index :', index);
+      console.log('cindex :', cindex);
+      this.keys[index].value.forEach(ele => {
+        ele.notClick = false;
+      });
+      this.keys[index].value[cindex].notClick = true;
+      this.size = ""
+      for(let i = 0; i < this.keys.length; i++) {
+        let status = false
+        for(let j = 0; j < this.keys[i].value.length; j++) {
+          if(this.keys[i].value[j].notClick && !status) {
+            console.log('已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname)
+            this.size = this.size+'已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname
+            status = true;
           }
-          // console.log(this.keys[i].value[j]);
         }
+        if(!status) {
+          console.log('未选' + this.keys[i].name)
+          this.size = this.size + '未选' + this.keys[i].name
+        }
+        status = false;
       }
+      // /*所有规格*/
+      // let orderInfo = this.keys;
+      // /*当前点击的规格的所有子属性内容*/
+      // let orderInfoChild = this.keys[index].value;
+      // //选中自己，兄弟节点取消选中
+      // if (orderInfoChild[cindex].notClick !== true) {
+      //   if (orderInfoChild[cindex].notClick == true) {
+      //     orderInfoChild[cindex].notClick = false;
+      //   } else {
+      //     //  for (let i = 0; i < orderInfoChild.length; i++) {
+      //     //   orderInfoChild[i].isActiveC = false;
+      //     // }
+      //     orderInfoChild.forEach(item => {
+      //       item.notClick = false;
+      //     });
+      //     orderInfoChild[cindex].notClick = true;
+      //   }
+      // }
     },
-    //获取对象的key
-    getObjectKey(obj) {
-      console.log(obj);
-      var keys = [];
-      for (var keys in obj)
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          keys[goodsList.length] = keys;
-      return keys;
-    }
+    
   }
 };
 </script>

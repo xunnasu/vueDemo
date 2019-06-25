@@ -11,6 +11,8 @@ import Login from './views/Top/Login.vue'
 import Register from './views/Top/Register.vue'
 import Custom from './views/Custom/custom.vue'
 import Buyback from './views/Custom/Buyback.vue'
+import AddressManage from './views/Metal/AddressManage.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -79,6 +81,12 @@ export default new Router({
       name: 'Buyback',
       component: Buyback
     },
+    {
+      path: '/AddressManage',
+      name: 'AddressManage',
+      component: AddressManage
+    },
+    
     
   ]
 })
