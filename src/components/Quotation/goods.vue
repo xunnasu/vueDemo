@@ -9,8 +9,7 @@
         <div class="right">
           <p>￥{{nowPrice}}</p>
           <p>库存{{stock}}件</p>
-          <p v-if="isSelect" >{{size}}</p>
-          <p v-else>已选{{select}}</p>
+          <p class="size">{{size}}</p>
         </div>
       </div>
       <!-- 商品筛选 -->
@@ -104,53 +103,33 @@ export default {
       nowPrice: '180'
     };
   },
+  created() {
+    // const arr1 = [1, 2, 3, 4, 1, 1, 12, 2, 2, 3];
+    // const arr2 = arr1.map(item => item * 2);
+    // console.log(arr2);
+    // const ar = ['1', '2', '3'].map(item => parseInt(item));
+    // console.log(ar);
+    // const arr3 = [];
+    // for (let i = 0; i < arr1.length; i++) {
+    //   if (arr1.indexOf(arr1[i]) == i) {
+    //     arr3.push(arr1[i]);
+    //   }
+    // }
+    // console.log(arr3);
+    var arr = [1, 2, 3, 4];
+    var sum = 0;
+    arr.forEach((item, index) => {
+      sum += arr[index];
+    });
+    console.log(sum);
+  },
   methods: {
     handleOk() {
       this.$emit('on-show', false);
     },
     tabInfoChange(index, cindex, cid, e) {
-      // /*所有规格*/
-      // let orderInfo = this.keys;
-      // /*当前点击的规格的所有子属性内容*/
-      // let orderInfoChild = this.keys[index].value;
-      // //选中自己，兄弟节点取消选中
-      // if (orderInfoChild[cindex].notClick !== true) {
-      //   if (orderInfoChild[cindex].isActiveC == true) {
-      //     orderInfoChild[cindex].isActiveC = false;
-      //   } else {
-      //     orderInfoChild.forEach(item => {
-      //       item.isActiveC = false;
-      //     });
-      //     orderInfoChild[cindex].isActiveC = true;
-      //   }
-      // }
-
-      //  console.log('index :', index);
-      // console.log('cindex :', cindex);
-      // this.keys[index].value.forEach(ele => {
-      //   ele.notClick = false;
-      // });
-      // this.keys[index].value[cindex].notClick = true;
-      // this.size = ""
-      // for(let i = 0; i < this.keys.length; i++) {
-      //   let status = false
-      //   for(let j = 0; j < this.keys[i].value.length; j++) {
-      //     if(this.keys[i].value[j].notClick && !status) {
-      //       console.log('已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname)
-      //       this.size = this.size+'已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname
-      //       status = true;
-      //     }
-      //   }
-      //   if(!status) {
-      //     console.log('未选' + this.keys[i].name)
-      //     this.size = this.size + '未选' + this.keys[i].name
-      //   }
-      //   status = false;
-
-      console.log('index :', index);
-      console.log('cindex :', cindex);
-      this.keys[index].value.forEach(ele => {
-        ele.notClick = false;
+      this.keys[index].value.forEach(item => {
+        item.notClick = false;
       });
       this.keys[index].value[cindex].notClick = true;
       this.size = '';
@@ -158,7 +137,12 @@ export default {
         let status = false;
         for (let j = 0; j < this.keys[i].value.length; j++) {
           if (this.keys[i].value[j].notClick && !status) {
-            this.size = this.size + '已选:' + this.keys[i].value[j].cname;
+            this.size =
+              this.size +
+              '已选' +
+              this.keys[i].name +
+              ':' +
+              this.keys[i].value[j].cname;
             status = true;
           }
         }
@@ -167,6 +151,7 @@ export default {
         }
         status = false;
       }
+      this.stock = '';
     }
   }
 };
@@ -201,11 +186,8 @@ export default {
       .right {
         margin-left: 20px;
         line-height: 25px;
-        .changeStatus {
-          color: rgb(207, 28, 28);
-        }
-        .clickStatus {
-          color: rgb(10, 120, 223);
+        .size {
+          color: rgb(175, 175, 171);
         }
       }
     }
