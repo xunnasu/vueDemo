@@ -12,7 +12,8 @@ import Register from './views/Top/Register.vue'
 import Custom from './views/Custom/custom.vue'
 import Buyback from './views/Custom/Buyback.vue'
 import AddressManage from './views/Metal/AddressManage.vue'
-
+import componentA from '@/components/componentA'
+import componentB from '@/components/componentB'
 Vue.use(Router)
 
 export default new Router({
@@ -86,6 +87,16 @@ export default new Router({
       name: 'AddressManage',
       component: AddressManage
     },
+    {
+      path:'/componentA',
+      name:'componentA',
+      component:componentA
+    },
+    {
+      path:'/componentB',
+      name:'componentB',
+      component:componentB
+    }
     
     
   ]

@@ -7,6 +7,7 @@
       <router-link to="/MetalSis" class="goods">类似黄金td商品属性</router-link>
       <router-link to="/Buyback" class="buyback">回购</router-link>
       <router-link to="/AddressManage" class="address">地址管理</router-link>
+       <!-- <router-link to="/componentA" class="address">vuex状态管理</router-link> -->
     <div v-for="item in addressLists" :key="item.id">
       <div v-for="a in item.address" :key="a">{{a}}</div>
     </div>
