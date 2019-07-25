@@ -52,7 +52,7 @@ export default {
     selectCity
   },
   created() {
-    this.$http.get(this.baseUrl + 'mock/data.json').then(res => {
+    this.$http.get(this.baseUrl + 'mock/datass.json').then(res => {
       // console.log(res)
       this.options = res.data; //得到json里面的 每一项
     });
@@ -66,6 +66,7 @@ export default {
       this.options.forEach(res => {
         //把每个城市遍历出来
         if (res.value === value) {
+          console.log(res);
           //如果省份的值相等就给他赋值
           this.subOptions = res.children; //然后在给城市赋值
           this.selectCity = res; //2(附加).res首先赋给selectCity ，selectCity 里面有值label。就又赋给了label,label有赋给了showCity,所以就会显示省份了
@@ -76,11 +77,11 @@ export default {
     },
     handleCity(value) {
       //城市的值，
-      // this.subOptions.forEach((res)=>{
-      //   if(res.value===value){
-      //     this.selectCity = res  //1.打开这里，就把城市显示出来了
-      //   }
-      // })
+      this.subOptions.forEach(res => {
+        if (res.value === value) {
+          this.selectCity = res; //1.打开这里，就把城市显示出来了
+        }
+      });
     },
     handleClick() {
       //点击确认
