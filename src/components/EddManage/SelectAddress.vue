@@ -1,6 +1,6 @@
 <template>
   <div class="selectAddress"  @click.self="handleClose" :class="{'show':showFlag,'hide':!showFlag}">
-    <div class="selectAddressBox"  v-if="showFlag" >
+    <div class="selectAddressBox">
       455676787
     </div>
   </div>

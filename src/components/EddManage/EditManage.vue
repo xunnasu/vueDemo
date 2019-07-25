@@ -1,6 +1,6 @@
 <template>
   <div class="tipsBox" v-if="show"   @click.self="handleClick">
-    <div class="containers" :class="{'upper':showFlag}"> 
+    <div class="containers" > 
     <div class="select" @click="handleSelectAdress">
        <p>北京市朝阳区麦子店西街</p>
        <i class="iconRight"></i>
@@ -14,7 +14,6 @@
       :showFlag='showFlag' 
       @on-show="handleShow"
     ></select-address>
-  
   </div>
 </template>
 <script>
@@ -71,16 +70,6 @@ export default {
     //点击取消
     cancel() {
       this.$emit('on-show', false);
-    },
-    handleProvince(value) {
-      this.options.forEach(item => {
-        console.log(item);
-        if (item.value === value) {
-          this.subOptions = item.children;
-          this.selectTity = item;
-        }
-      });
-      this.value1 = '';
     }
   }
 };

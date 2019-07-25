@@ -18,6 +18,10 @@
       <edit-manage
         v-model="Vshow"
       ></edit-manage>
+      <!-- <edit-manage
+        :show="Vshow"
+        @on-show="handleShow"
+      ></edit-manage> -->
       <div class="addressFooter">
         <p class="add">+ 添加新地址</p>
       </div>
@@ -74,6 +78,12 @@ export default {
     handleEdit() {
       this.Vshow = true;
     }
+    /* 用这个方法 handleShow()得时候,组件就要这么写 :show="Vshow"  @on-show="handleShow"
+    可以把父组件得model 删除了
+    */
+    // handleShow() {
+    //   this.Vshow = false;
+    // }
   }
 };
 </script>
