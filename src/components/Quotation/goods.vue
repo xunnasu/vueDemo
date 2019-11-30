@@ -40,10 +40,10 @@ export default {
       default: false
     }
   },
-  model: {
-    prop: 'show',
-    event: 'on-show'
-  },
+  // model: {
+  //   prop: 'show',
+  //   event: 'on-show'
+  // },
   data() {
     return {
       baseUrl: process.env.BASE_URL,

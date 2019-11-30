@@ -23,8 +23,8 @@
         </div>
       </div>
       <!-- 弹出层，去掉父组件的model，就用这个→ → --> 
-      <!-- <goods :show="VShow"  @on-show="handleShow"></goods>  -->
-      <goods v-model="VShow"></goods>
+      <goods :show="VShow"  @on-show="handleShow"></goods> 
+      <!-- <goods v-model="VShow"></goods> -->
     </div>
 </template>
 <script>
