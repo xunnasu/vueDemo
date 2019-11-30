@@ -10,9 +10,12 @@ import MetalSis from './views/Metal/MetalSis.vue'
 import Login from './views/Top/Login.vue'
 import Register from './views/Top/Register.vue'
 import Custom from './views/Custom/custom.vue'
+import CustomYK from './views/Custom/customYK.vue'
+import CustomYKSY from './views/Custom/customYKSY.vue'
 import Buyback from './views/Custom/Buyback.vue'
 import AddressManage from './views/Metal/AddressManage.vue'
-
+import componentA from '@/components/componentA'
+import componentB from '@/components/componentB'
 Vue.use(Router)
 
 export default new Router({
@@ -77,6 +80,16 @@ export default new Router({
       component: Custom
     },
     {
+      path: '/CustomYK/:appNum',
+      name: 'CustomYK',
+      component: CustomYK,
+    },
+    {
+      path: '/CustomYKSY',
+      name: 'CustomYKSY',
+      component: CustomYKSY
+    },
+    {
       path: '/Buyback',
       name: 'Buyback',
       component: Buyback
@@ -86,6 +99,16 @@ export default new Router({
       name: 'AddressManage',
       component: AddressManage
     },
+    {
+      path:'/componentA',
+      name:'componentA',
+      component:componentA
+    },
+    {
+      path:'/componentB',
+      name:'componentB',
+      component:componentB
+    }
     
     
   ]

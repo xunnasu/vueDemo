@@ -6,15 +6,24 @@
           <img src="../../../public/imgs/banner.png" alt="">
         </div>
         <div class="gold">
-          <p v-for="item in 30" :key="item">{{gold}}</p>
+          <p v-for="item in 20" :key="item">{{gold}}</p>
+           <div>{{isName}}</div>
+          <div>
+            <!-- <p v-for="(item,index) in list" :key="item.id" :class="{'active':changeCount ===index  }" @click="handleClick" >{{item.name}}</p>
+            <p v-for="(itemA,index) in listA"  :key="itemA.id"  v-show="index === changeCount" >{{itemA.name}}</p> -->
+            <p v-for="(item,index) in list" :key="index.id" @click="handleClick(index)" :class="{'active':index === changeCount}">{{item.name}}</p>
+           <P v-for="(itemA,index) in listA" :key="index.id" v-show="changeCount===index">{{itemA.name}}</P>
+            <p></p>
+          </div>
         </div>
+       
         <div class="footer">
           <p class="add" @click="handleAdd">加入购物车</p>
           <p class="buy">立即购买</p>
         </div>
       </div>
-      <!-- 弹出层 -->
-      <!-- <goods :show="VShow"  @on-show="handleShow"></goods> -->
+      <!-- 弹出层，去掉父组件的model，就用这个→ → --> 
+      <!-- <goods :show="VShow"  @on-show="handleShow"></goods>  -->
       <goods v-model="VShow"></goods>
     </div>
 </template>
@@ -27,8 +36,45 @@ export default {
   data() {
     return {
       gold: '足金999',
-      VShow: false
+      VShow: false,
+      changeCount: -1,
+      name: '小花花啊',
+      list: [
+        {
+          name: 'vue',
+          id: 1
+        },
+        {
+          name: 'js',
+          id: 2
+        },
+        {
+          name: 'react',
+          id: 3
+        }
+      ],
+      listA: [
+        {
+          name: 'AAA',
+          id: 4
+        },
+        {
+          name: 'BBB',
+          id: 5
+        },
+        {
+          name: 'CCC',
+          id: 6
+        }
+      ]
     };
+  },
+  computed: {
+    isName() {
+      let name = this.name.split('');
+      name.splice(0, 2, '222');
+      return name.join('');
+    }
   },
   methods: {
     handleAdd() {
@@ -36,6 +82,13 @@ export default {
     },
     handleShow() {
       this.VShow = false;
+    },
+    // handleClick(index) {
+    //   console.log(this.changeCount);
+    //   this.changeCount = index;
+    // }
+    handleClick(index) {
+      this.changeCount = index;
     }
   }
 };

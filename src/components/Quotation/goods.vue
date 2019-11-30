@@ -15,7 +15,7 @@
         </div>
       </div>
       <!-- 商品筛选 -->
-      <div class="goodsScreen" v-for="(item,index) in keys" :key="index">
+      <div class="goodsScreen" v-for="(item,index) in keys" :key="index" >
         <div class="name">
           <p>{{item.name}}</p>
         </div>
@@ -115,23 +115,31 @@ export default {
     tabInfoChange(index, cindex, cid, e) {
       console.log('index :', index);
       console.log('cindex :', cindex);
+
       this.keys[index].value.forEach(ele => {
         ele.notClick = false;
       });
       this.keys[index].value[cindex].notClick = true;
-      this.size = ""
-      for(let i = 0; i < this.keys.length; i++) {
-        let status = false
-        for(let j = 0; j < this.keys[i].value.length; j++) {
-          if(this.keys[i].value[j].notClick && !status) {
-            console.log('已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname)
-            this.size = this.size+'已选:'+this.keys[i].name+'为'+this.keys[i].value[j].cname
+      this.size = '';
+      for (let i = 0; i < this.keys.length; i++) {
+        let status = false;
+        for (let j = 0; j < this.keys[i].value.length; j++) {
+          if (this.keys[i].value[j].notClick && !status) {
+            console.log(
+              '已选:' + this.keys[i].name + '为' + this.keys[i].value[j].cname
+            );
+            this.size =
+              this.size +
+              '已选:' +
+              this.keys[i].name +
+              '为' +
+              this.keys[i].value[j].cname;
             status = true;
           }
         }
-        if(!status) {
-          console.log('未选' + this.keys[i].name)
-          this.size = this.size + '未选' + this.keys[i].name
+        if (!status) {
+          console.log('未选' + this.keys[i].name);
+          this.size = this.size + '未选' + this.keys[i].name;
         }
         status = false;
       }
@@ -153,8 +161,7 @@ export default {
       //     orderInfoChild[cindex].notClick = true;
       //   }
       // }
-    },
-    
+    }
   }
 };
 </script>
@@ -172,19 +179,12 @@ export default {
     background: #fff;
     position: absolute;
     bottom: 0;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    // align-items: center;
     .top {
       display: flex;
       justify-content: flex-start;
       align-items: center;
       margin-top: 10px;
       margin-left: 10px;
-      // position: absolute;
-      // left: 10px;
-      // top: 10px;
       .right {
         margin-left: 20px;
         line-height: 25px;
@@ -205,11 +205,11 @@ export default {
         background: rgb(233, 232, 232);
       }
       .notClick {
-        background: #999999;
+        background: rgb(235, 232, 232);
         color: rgb(226, 17, 17);
       }
       .active {
-        background: rgba(217, 218, 214, 0.3);
+        background: #fff;
         color: rgb(241, 112, 6);
         border: 1px solid rgb(241, 112, 6);
       }
@@ -218,7 +218,6 @@ export default {
       width: 100%;
       text-align: center;
       position: absolute;
-      // left: 50;
       bottom: 5px;
       background: rgb(235, 129, 8);
       border-radius: 20px;
